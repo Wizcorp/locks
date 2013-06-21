@@ -1,21 +1,167 @@
 # Locks
 
-Locks implements locking mechanisms that have traditionally been used for
-protecting shared memory between multiple threads. JavaScript is inherently
-single threaded and does not suffer from these security and stability issues.
-However, because of its asynchronous eventy nature JavaScript can still benefit
-from making particular operations wait for the completion of others.
+Locks implements locking/synchronization mechanisms that have traditionally
+been used for protecting shared memory between multiple threads. JavaScript is
+inherently single threaded and does not suffer from these security and
+stability issues. However, because of its asynchronous eventy nature JavaScript
+can still benefit from making particular operations wait for the completion of
+others.
 
-## Mutex locks
+## Installation
+
+For Node.js:
+```bash
+npm install locks
+```
+
+For Component:
+```bash
+component install Wizcorp/locks
+```
+
+## API
+
+Accessing the locks module:
+```javascript
+var locks = require('locks');
+```
+
+Please note that all the examples below will also demonstrate how to unlock
+each time. But in general, this matters:
+```javascript
+// this will give waiting processes a chance to get the lock and continue
+myLock.unlock();
+```
+
+### Mutex locks
+
+Mutex locks are the most basic locks which aim to prevent the simultaneous
+access to a resource by more than one actor at a time.
+[more info](http://en.wikipedia.org/wiki/Mutual_exclusion)
+
+Creating a Mutex Lock:
+```javascript
+var mutex = locks.createMutex();
+```
+
+Waiting to lock:
+```javascript
+mutex.lock(function () {
+	console.log('We got the lock!');
+	// do stuff
+	mutex.unlock();
+});
+```
+
+Waiting to lock, with timeout:
+```javascript
+mutex.timedLock(5000, function (error) {
+	if (error) {
+		console.log('Could not get the lock within 5 seconds, so gave up');
+	} else {
+		console.log('We got the lock!');
+		// do stuff
+		mutex.unlock();
+	}
+});
+```
+
+Optimistic attempt to lock:
+```javascript
+if (mutex.tryLock()) {
+	console.log('We got the lock!');
+	// do stuff
+	mutex.unlock();
+} else {
+	console.log('Could not get the lock at this time');
+}
+```
+
+### Read/Write locks
+
+Read/Write Locks are used to allow many actors to read from a resource, as
+long as nothing is writing to it. That also means that only one actor may be
+writing at any given time.
+[more info](http://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock)
+
+Creating a Read/Write Lock:
+```javascript
+var rwlock = locks.createReadWriteLock();
+```
+
+Waiting to read lock:
+```javascript
+rwlock.readLock(function () {
+	console.log('We may now read from a resource!');
+	// do stuff
+	rwlock.unlock();
+});
+```
+
+Waiting to write lock:
+```javascript
+rwlock.writeLock(function () {
+	console.log('We may now write to a resource!');
+	// do stuff
+	rwlock.unlock();
+});
+```
+
+Waiting to read lock, with timeout:
+```javascript
+rwlock.timedReadLock(5000, function (error) {
+	if (error) {
+		console.log('Could not get the lock within 5 seconds, so gave up');
+	} else {
+		console.log('We may now read from a resource!');
+		// do stuff
+		rwlock.unlock();
+	}
+});
+```
+
+Waiting to write lock, with timeout:
+```javascript
+rwlock.timedWriteLock(5000, function (error) {
+	if (error) {
+		console.log('Could not get the lock within 5 seconds, so gave up');
+	} else {
+		console.log('We may now write to a resource!');
+		// do stuff
+		rwlock.unlock();
+	}
+});
+```
+
+Optimistic attempt to read lock:
+```javascript
+if (rwlock.tryReadLock()) {
+	console.log('We may now read from a resource!');
+	// do stuff
+	rwlock.unlock();
+} else {
+	console.log('Could not get the lock at this time');
+}
+```
+
+Optimistic attempt to write lock:
+```javascript
+if (rwlock.tryWriteLock()) {
+	console.log('We may now write to a resource!');
+	// do stuff
+	rwlock.unlock();
+} else {
+	console.log('Could not get the lock at this time');
+}
+```
+
+### Condition variables
 
 
-## Read Write locks
+### Semaphores
 
 
-## Condition variables
+## License
 
-
-## Semaphores
-
-
+MIT
 
