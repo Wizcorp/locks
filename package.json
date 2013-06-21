@@ -2,11 +2,12 @@
   "name": "locks",
   "version": "0.1.0",
   "description": "Mutex locks, Read/Write locks, Condition variables and Semaphores",
+  "keywords": ["locks", "mutex", "semaphore", "synchronize", "synchronise"],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
+  "repository": "https://github.com/Wizcorp/locks",
   "author": "Ron Korving <ron.korving@wizcorp.jp>",
   "license": "MIT"
 }
