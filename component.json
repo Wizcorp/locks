@@ -1,0 +1,8 @@
+{
+  "name": "locks",
+  "repo": "Wizcorp/locks",
+  "description": "Mutex locks, Read/Write locks, Condition variables and Semaphores",
+  "version": "0.1.0"
+  "scripts": ["index.js"],
+  "license": "MIT"
+}

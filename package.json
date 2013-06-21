@@ -1,0 +1,12 @@
+{
+  "name": "locks",
+  "version": "0.1.0",
+  "description": "Mutex locks, Read/Write locks, Condition variables and Semaphores",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Ron Korving <ron.korving@wizcorp.jp>",
+  "license": "MIT"
+}
