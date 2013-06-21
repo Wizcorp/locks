@@ -29,7 +29,7 @@ var locks = require('locks');
 Please note that all the examples below will also demonstrate how to unlock
 each time. But in general, this matters:
 ```javascript
-// this will give waiting processes a chance to get the lock and continue
+// unlocking will give waiting processes a chance to get the lock and continue
 myLock.unlock();
 ```
 
