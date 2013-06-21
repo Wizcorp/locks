@@ -9,12 +9,12 @@ others.
 
 ## Installation
 
-For Node.js:
+Node.js users:
 ```bash
 npm install locks
 ```
 
-For Component:
+Component users:
 ```bash
 component install Wizcorp/locks
 ```
@@ -157,9 +157,51 @@ if (rwlock.tryWriteLock()) {
 
 ### Condition variables
 
+Condition variables allow synchronization between processes based on values.
+
+Creating a Condition Variable:
+```javascript
+var initialValue = 'hello world';
+var cond = locks.createCondVariable(initialValue);
+```
+
+Waiting for a condition to be met:
+```javascript
+cond.wait(
+	function conditionTest(value) {
+		return value.indexOf('こんにちは') !== -1;
+	},
+	function whenConditionMet() {
+		console.log('Our welcome message is in Japanese!');
+	}
+);
+```
+
+Setting the value on a Condition Variable:
+```javascript
+cond.set('こんにちは世界！');
+```
 
 ### Semaphores
 
+Semaphores solve the problem of sharing a limited set of resources.
+[more info](http://en.wikipedia.org/wiki/Semaphore_%28programming%29)
+
+Creating a Semaphore:
+```javascript
+var initialValue = 3;  // amount of resources available
+var sem = locks.createSemaphore(initialValue);
+```
+
+Claiming and releasing a resource:
+```javascript
+sem.wait(function () {
+	console.log('We may now access one resource!');
+	// do stuff
+	// release the resource
+	sem.signal();
+});
+```
 
 ## License
 
