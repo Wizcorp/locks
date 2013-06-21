@@ -240,13 +240,15 @@ ReadWriteLock.prototype.tryWriteLock = function () {
 
 
 ReadWriteLock.prototype.unlock = function () {
+	var waiter;
+
 	if (this.isLocked === 'R') {
 		this._readLocks -= 1;
 
 		if (this._readLocks === 0) {
 			// allow one write lock through
 
-			var waiter = this._waitingToWrite.shift();
+			waiter = this._waitingToWrite.shift();
 			if (waiter) {
 				this.isLocked = 'W';
 				waiter();
@@ -260,7 +262,7 @@ ReadWriteLock.prototype.unlock = function () {
 		var rlen = this._waitingToRead.length;
 
 		if (rlen === 0) {
-			var waiter = this._waitingToWrite.shift();
+			waiter = this._waitingToWrite.shift();
 			if (waiter) {
 				this.isLocked = 'W';
 				waiter();
