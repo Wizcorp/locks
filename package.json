@@ -8,6 +8,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "https://github.com/Wizcorp/locks",
-  "author": "Ron Korving <ron.korving@wizcorp.jp>",
+  "author": "Ron Korving <rkorving@wizcorp.jp>",
   "license": "MIT"
 }
