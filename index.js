@@ -94,6 +94,7 @@ Mutex.prototype.timedLock = function (ttl, cb) {
 		if (cb) {
 			cb();
 			cb = null;
+			return;
 		}
 
 		that.unlock();
