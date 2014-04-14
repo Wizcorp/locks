@@ -91,12 +91,13 @@ Mutex.prototype.timedLock = function (ttl, cb) {
 	this._waiting.push(function () {
 		clearTimeout(timer);
 
-		if (cb) {
-			cb();
-			cb = null;
+		if (!cb) {
+			that.unlock();
+			return;
 		}
 
-		that.unlock();
+		cb();
+		cb = null;
 	});
 
 	timer = setTimeout(function () {
@@ -174,12 +175,13 @@ ReadWriteLock.prototype.timedReadLock = function (ttl, cb) {
 	this._waitingToRead.push(function () {
 		clearTimeout(timer);
 
-		if (cb) {
-			cb();
-			cb = null;
+		if (!cb) {
+			that.unlock();
+			return;
 		}
 
-		that.unlock();
+		cb();
+		cb = null;
 	});
 
 	timer = setTimeout(function () {
@@ -201,12 +203,13 @@ ReadWriteLock.prototype.timedWriteLock = function (ttl, cb) {
 	this._waitingToWrite.push(function () {
 		clearTimeout(timer);
 
-		if (cb) {
-			cb();
-			cb = null;
+		if (!cb) {
+			that.unlock();
+			return;
 		}
 
-		that.unlock();
+		cb();
+		cb = null;
 	});
 
 	timer = setTimeout(function () {
