@@ -1,4 +1,3 @@
-
 // Semaphores
 
 function Semaphore(initialCount) {
@@ -10,7 +9,7 @@ function Semaphore(initialCount) {
 Semaphore.prototype.signal = function () {
 	this._count += 1;
 
-	if (this._count > 0) {
+	if (this._count <= 0) {
 		var waiter = this._waiting.shift();
 		if (waiter) {
 			waiter();
