@@ -1,6 +1,7 @@
 var locks = require('..');
 var test = require('tape');
 
+
 test('Mutex', function (t) {
 	var mutex = locks.createMutex();
 
@@ -26,7 +27,7 @@ test('Mutex', function (t) {
 				mutex.unlock();
 			}, 10);
 
-			mutex.timedLock(100, function (error) {
+			mutex.timedLock(1000, function (error) {
 				t.error(error, 'Lock attempt did not time out');
 
 				t.end();
