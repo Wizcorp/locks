@@ -1,0 +1,9 @@
+# Files
+
+.DS_Store
+*.swp
+*.log
+
+# Directories
+
+/node_modules
