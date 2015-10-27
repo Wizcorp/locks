@@ -3,6 +3,12 @@
   "repo": "Wizcorp/locks",
   "description": "Mutex locks, Read/Write locks, Condition variables and Semaphores",
   "version": "0.1.0",
-  "scripts": ["index.js"],
+  "scripts": [
+      "index.js",
+      "lib/CondVariable.js",
+      "lib/Mutex.js",
+      "lib/ReadWriteLock.js",
+      "lib/Semaphore.js"
+  ],
   "license": "MIT"
 }
