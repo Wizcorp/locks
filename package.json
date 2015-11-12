@@ -1,11 +1,13 @@
 {
   "name": "locks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Mutex locks, Read/Write locks, Condition variables and Semaphores",
   "keywords": [
     "locks",
     "mutex",
     "semaphore",
+    "condition",
+    "rwlock",
     "synchronize",
     "synchronise",
     "synchronization",
