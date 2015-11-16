@@ -9,6 +9,10 @@ test('CondVariable', function (t) {
 	var cond = locks.createCondVariable(false);
 	var timerFired = false;
 
+	t.throws(function () {
+		cond.wait({}, function () {});
+	}, 'Objects are not valid conditions to wait for')
+
 	t.equal(cond.get(), false, 'Condition starts false');
 
 	cond.wait(trueTest, function () {
