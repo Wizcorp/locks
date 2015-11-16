@@ -7,7 +7,30 @@ test('Mutex', function (t) {
 
 	t.equal(mutex.isLocked, false, 'Unlocked');
 
+	var unlockedByNextLock = false;
+	var instantTimedLockSuccess = false;
+
+	mutex.timedLock(1, function () {
+		instantTimedLockSuccess = true;
+		mutex.unlock();
+	});
+
+	t.equal(instantTimedLockSuccess, true, 'Timed lock fired instantly');
+
+	t.throws(function () {
+		mutex.unlock();
+	}, 'Cannot unlock an unlocked mutex');
+
 	mutex.lock(function () {
+		setTimeout(function () {
+			t.equal(unlockedByNextLock, false, 'Next lock is waiting');
+			mutex.unlock();
+			t.equal(unlockedByNextLock, true, 'Next lock executed');
+		}, 10);
+	});
+
+	mutex.lock(function () {
+		unlockedByNextLock = true;
 		t.equal(mutex.isLocked, true, 'Locked');
 
 		var success = mutex.tryLock();
