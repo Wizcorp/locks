@@ -1,3 +1,8 @@
+# v0.2.2
+
+* Fixed race condition in ReadWriteLocks
+* 100% unit test coverage
+
 # v0.2.1
 
 * All callbacks now have the object as `this` value
