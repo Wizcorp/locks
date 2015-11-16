@@ -3,8 +3,13 @@ var test = require('tape');
 
 
 function testMany(t, cb) {
-	var sem = locks.createSemaphore(2);  // 2 available resources
-	t.equal(sem._count, 2, 'Starts with 2 available resources');
+	var sem;
+
+	sem = locks.createSemaphore();  // default resources should be 1
+	t.equal(sem._count, 1, 'Defaults to 2 available resources');
+
+	sem = locks.createSemaphore(2);  // 2 available resources
+	t.equal(sem._count, 2, 'Created with 2 available resources');
 
 	function fn() {
 		process.nextTick(function () {
