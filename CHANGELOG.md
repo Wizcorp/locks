@@ -1,4 +1,4 @@
-# vNEXT
+# v0.2.1
 
 * All callbacks now have the object as `this` value
 * Added tests for ReadWriteLock

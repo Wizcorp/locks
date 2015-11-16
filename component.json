@@ -2,7 +2,7 @@
   "name": "locks",
   "repo": "Wizcorp/locks",
   "description": "Mutex locks, Read/Write locks, Condition variables and Semaphores",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": [
       "index.js",
       "lib/CondVariable.js",
