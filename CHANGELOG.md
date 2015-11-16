@@ -1,3 +1,9 @@
+# vNEXT
+
+* All callbacks now have the object as `this` value
+* Added tests for ReadWriteLock
+* Added coverage test (rpm run cover)
+
 # v0.2.0
 
 ## Semaphores
