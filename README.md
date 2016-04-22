@@ -66,6 +66,13 @@ mutex.timedLock(5000, function (error) {
 });
 ```
 
+Checking if a lock is held:
+```javascript
+if (mutex.isLocked) {
+	console.log('Something has the lock.');
+}
+```
+
 Optimistic attempt to lock:
 ```javascript
 if (mutex.tryLock()) {
@@ -131,6 +138,16 @@ rwlock.timedWriteLock(5000, function (error) {
 		rwlock.unlock();
 	}
 });
+```
+
+Checking if a lock is held:
+```javascript
+if (rwlock.isWriteLocked) {
+	console.log('Something has the write lock.');
+}
+else if (rwlock.isReadLocked) {
+	console.log('The read lock is held one or more times.');
+}
 ```
 
 Optimistic attempt to read lock:
