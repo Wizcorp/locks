@@ -57,4 +57,14 @@ test('Mutex', function (t) {
 			});
 		});
 	});
+	
+	mutex.lock(function () {
+		t.equal(mutex.isLocked, true, 'Locked');
+	});
+	
+	var success = mutex.tryLock();
+	t.equal(success, false, 'Try failed');
+	
+	mutex.resetQueue();
+	t.equal(mutex.isLocked, false, 'Lock is waiting to be acquired');
 });

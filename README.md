@@ -84,6 +84,11 @@ if (mutex.tryLock()) {
 }
 ```
 
+Reset queue:
+```javascript
+mutex.resetQueue();
+```
+
 ### Read/Write locks
 
 Read/Write Locks are used to allow many actors to read from a resource, as
