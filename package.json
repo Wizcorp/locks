@@ -15,7 +15,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js | tap-spec",
+    "test": "tape test/*.js promise/test/*.js | tap-spec",
     "cover": "rm -rf .nyc_output && nyc --silent --all tape test/*.js > /dev/null 2>&1 && nyc report"
   },
   "repository": "https://github.com/Wizcorp/locks",
